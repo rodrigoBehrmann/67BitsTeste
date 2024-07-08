@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "67teste.sln"
+    "dotnet.defaultSolution": "67BitsTeste.sln"
 }
