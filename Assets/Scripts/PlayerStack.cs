@@ -63,7 +63,7 @@ public class PlayerStack : MonoBehaviour
 
      private void MoveStackedCharacters()
     {
-        Vector3 previousPosition = stackPosition.position;
+        //Vector3 previousPosition = stackPosition.position;
 
         for (int i = 0; i < stackedCharacters.Count; i++)
         {
@@ -78,21 +78,7 @@ public class PlayerStack : MonoBehaviour
      
             character.transform.rotation = Quaternion.Lerp(character.transform.rotation, stackPosition.rotation, Time.deltaTime * rotationInertiaFactor);
 
-            previousPosition = newPosition;
+           // previousPosition = newPosition;
         }
-    }
-
-    private void ThrowStackedCharacters(Vector3 targetPosition, float throwForce)
-    {
-        foreach (GameObject character in stackedCharacters)
-        {
-            character.GetComponent<Collider>().enabled = true;
-            Rigidbody rb = character.GetComponent<Rigidbody>();
-            rb.isKinematic = false; 
-            Vector3 direction = (targetPosition - character.transform.position).normalized;
-            rb.AddForce(direction * throwForce, ForceMode.Impulse);
-        }
-
-        stackedCharacters.Clear();
-    }
+    }    
 }

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerPunch : MonoBehaviour
 {
-    public float punchForce = 10f;
-    public float punchRadius = 1f;    
-    public Transform punchPoint;
-    public LayerMask characterLayer;
+    [SerializeField] private float punchForce = 10f;
+    [SerializeField] private float punchRadius = 1f;    
+    [SerializeField] private Transform punchPoint;
+    [SerializeField] private LayerMask characterLayer;
     private InputManager _inputManager;
     private PlayerStack _playerStack;
 
@@ -21,8 +21,6 @@ public class PlayerPunch : MonoBehaviour
 
     public void Punch()
     {
-        Debug.Log("_playerStack.GetStackedCharactersCount()   " + _playerStack.GetStackedCharactersCount());
-        Debug.Log("_playerStack.StackCapacity   "+ _playerStack.StackCapacity);
         if(_playerStack.GetStackedCharactersCount() == _playerStack.StackCapacity)
         {
             return;
@@ -32,14 +30,18 @@ public class PlayerPunch : MonoBehaviour
 
         foreach (Collider character in hitCharacters)
         {
-            Rigidbody rb = character.GetComponent<Rigidbody>();            
+            Rigidbody rb = character.GetComponent<Rigidbody>();  
+                     
             StartCoroutine(PunchHandle(character, rb));            
         }
     }
 
-   private IEnumerator  PunchHandle(Collider character, Rigidbody rb){
+   private IEnumerator PunchHandle(Collider character, Rigidbody rb){
+        Vector3 direction = (character.transform.position - punchPoint.position).normalized;
+        //rb.AddForce(character.gameObject.transform.forward * punchForce, ForceMode.Impulse); 
         RagdollActive ragdoll = character.gameObject.GetComponent<RagdollActive>();
         ragdoll.RagDollOn();
+        ragdoll.AddForceToRagdoll(direction, punchForce);
 
         yield return new WaitForSeconds(2f);
         
@@ -47,14 +49,12 @@ public class PlayerPunch : MonoBehaviour
             {
                 ragdoll.RagDollOff();
                 character.transform.rotation = new Quaternion(0f,0f,0f,0f);
-                rb.isKinematic = true;
-                Vector3 direction = (character.transform.position - punchPoint.position).normalized;
-                rb.AddForce(direction * punchForce, ForceMode.Impulse);
+                rb.isKinematic = true;                
                 _playerStack.AddCharacterToStack(character.gameObject);
             }
     }    
 
-    void OnDrawGizmosSelected()
+    private void OnDrawGizmosSelected()
     {
         if (punchPoint == null)
             return;

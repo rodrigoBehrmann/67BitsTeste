@@ -53,6 +53,14 @@ public class RagdollActive : MonoBehaviour
         _enemyRigibody.isKinematic = false;
     }
 
+    public void AddForceToRagdoll(Vector3 direction, float force)
+    {
+        foreach (Rigidbody rig in _limbsRigidbodies)
+        {
+            rig.AddForce(direction * force, ForceMode.Impulse);
+        }
+    }
+
     public void RagDollOn()
     {
         _enemyAnim.enabled = false;
