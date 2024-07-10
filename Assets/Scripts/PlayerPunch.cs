@@ -21,25 +21,33 @@ public class PlayerPunch : MonoBehaviour
 
     void Punch()
     {
+        Debug.Log("_playerStack.GetStackedCharactersCount()   " + _playerStack.GetStackedCharactersCount());
+        Debug.Log("_playerStack.StackCapacity   "+ _playerStack.StackCapacity);
+        if(_playerStack.GetStackedCharactersCount() == _playerStack.StackCapacity)
+        {
+            return;
+        }
+
         Collider[] hitCharacters = Physics.OverlapSphere(punchPoint.position, punchRadius, characterLayer);
 
         foreach (Collider character in hitCharacters)
         {
             Rigidbody rb = character.GetComponent<Rigidbody>();            
-            PunchHandle(character, rb);
-            // if (rb != null)
-            // {
-            //     Vector3 direction = (character.transform.position - punchPoint.position).normalized;
-            //     rb.AddForce(direction * punchForce, ForceMode.Impulse);
-            //     _playerStack.AddCharacterToStack(character.gameObject);
-            // }
+            StartCoroutine(PunchHandle(character, rb));            
         }
     }
 
-    IENumerator PunchHandle(Collider character, Rigidbody rb){
-        new WaitforSeconds(0.1f);
+   private IEnumerator  PunchHandle(Collider character, Rigidbody rb){
+        RagdollActive ragdoll = character.gameObject.GetComponent<RagdollActive>();
+        ragdoll.RagDollOn();
+
+        yield return new WaitForSeconds(2f);
+        
         if (rb != null)
             {
+                ragdoll.RagDollOff();
+                character.transform.rotation = new Quaternion(0f,0f,0f,0f);
+                rb.isKinematic = true;
                 Vector3 direction = (character.transform.position - punchPoint.position).normalized;
                 rb.AddForce(direction * punchForce, ForceMode.Impulse);
                 _playerStack.AddCharacterToStack(character.gameObject);

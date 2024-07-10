@@ -187,7 +187,7 @@ Transform:
   m_GameObject: {fileID: 1584536429466654996}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.23, z: 3.344}
+  m_LocalPosition: {x: 0, y: 1.23, z: 1.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -260,7 +260,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -321,7 +321,7 @@ Transform:
   m_GameObject: {fileID: 2159508987786652198}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1.15, z: -2.34}
+  m_LocalPosition: {x: 0, y: 0.36, z: -0.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1061,8 +1061,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.815863, y: 0, z: 0.60931325}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6912918004805763394}
   - {fileID: 5409187609826926113}
@@ -1073,7 +1073,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &9217436754148196621
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1087,6 +1087,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -1181,10 +1182,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stackPosition: {fileID: 8345393040504654875}
-  stackSpacing: 0.5
+  stackSpacing: 0.8
   positionInertiaFactor: 60
   baseRotationInertiaFactor: 22
   rotationInertiaDecreaseFactor: 3.2
+  _stackCapacity: 6
 --- !u!114 &3706709921742993813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1198,11 +1200,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   punchForce: 34.7
-  punchPoint: {fileID: 293432018380037217}
   punchRadius: 1
+  punchPoint: {fileID: 293432018380037217}
   characterLayer:
     serializedVersion: 2
-    m_Bits: 16
+    m_Bits: 8
 --- !u!1 &8540467788123034591
 GameObject:
   m_ObjectHideFlags: 0

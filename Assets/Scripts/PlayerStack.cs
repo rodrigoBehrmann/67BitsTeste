@@ -20,6 +20,10 @@ public class PlayerStack : MonoBehaviour
 
     private List<GameObject> stackedCharacters = new List<GameObject>();
 
+    private void Start() {
+        UIManager.instance.UpdateStackCapacityText(_stackCapacity);
+    }
+
     private void Update()
     {
         if(stackedCharacters.Count > 0){
@@ -27,23 +31,34 @@ public class PlayerStack : MonoBehaviour
         }
     }
 
-    // private void OnTriggerEnter(Collider other)
-    // {
-    //     if (other.CompareTag("Enemy"))
-    //     {
-    //         AddCharacterToStack(other.gameObject);
-    //     }
-    // }
-
     public void AddCharacterToStack(GameObject character)
     {
-        if (stackedCharacters.Count < 10){
+        if (stackedCharacters.Count < _stackCapacity){
             character.GetComponent<Collider>().enabled = false; 
             stackedCharacters.Add(character);
         }
         else{
             return;
         }        
+    }
+
+    public void RemoveCharacterFromStack(int count){
+        for (int i = 0; i < count; i++)
+        {
+            if(stackedCharacters.Count > 0){
+                GameObject character = stackedCharacters[stackedCharacters.Count - 1];
+                stackedCharacters.Remove(character);
+                Destroy(character);
+            }
+        }
+    }
+
+    public int GetStackedCharactersCount(){
+        return stackedCharacters.Count;  
+    }
+
+    public void SetStackCapacity(int capacity){
+        _stackCapacity += capacity;
     }
 
      private void MoveStackedCharacters()

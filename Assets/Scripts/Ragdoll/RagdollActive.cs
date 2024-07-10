@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class RagdollActive : MonoBehaviour
 {
+    [SerializeField] private GameObject _enemyHips;
     private BoxCollider _boxCollider;
-    private GameObject _enemyGO;
     private Animator _enemyAnim;
     private Rigidbody _enemyRigibody;
     private Collider[] _ragDollColliders;
@@ -19,14 +19,7 @@ public class RagdollActive : MonoBehaviour
 
         GetRagdollAndRigidbodies();
         RagDollOff();
-    }
-
-    private void Update() {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            RagDollOn();
-        }
-    }
+    }    
 
     // private void OnCollisionEnter(Collision col)
     // {
@@ -39,8 +32,8 @@ public class RagdollActive : MonoBehaviour
 
     private void GetRagdollAndRigidbodies()
     {
-        _ragDollColliders = _enemyGO.GetComponentsInChildren<Collider>();
-        _limbsRigidbodies = _enemyGO.GetComponentsInChildren<Rigidbody>();
+        _ragDollColliders = _enemyHips.GetComponentsInChildren<Collider>();
+        _limbsRigidbodies = _enemyHips.GetComponentsInChildren<Rigidbody>();
     }
 
     public void RagDollOff()
@@ -78,8 +71,4 @@ public class RagdollActive : MonoBehaviour
         _enemyRigibody.isKinematic = true;
     }
 
-    private void OnDestroy()
-    {
-        GameManager.instance.EnemyCollect();
-    }
 }

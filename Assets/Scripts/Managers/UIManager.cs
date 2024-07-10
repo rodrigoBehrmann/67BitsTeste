@@ -8,9 +8,13 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
-    [SerializeField] private TextMeshProUGUI moneyTxt;
-    [SerializeField] private Button capacityBuyButton;
-    [SerializeField] private Button skinBuyButton;
+    [Header("UI Elements")]
+    [SerializeField] private TextMeshProUGUI _currentMoneyTxt;
+    [SerializeField] private TextMeshProUGUI _currentCapacityTxt;
+
+    [Header("Shop UI Elements")]
+    [SerializeField] private Button _capacityBuyButton;
+    [SerializeField] private Button _skinBuyButton;
 
     private void Awake()
     {
@@ -25,19 +29,35 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Start() {
+        _capacityBuyButton.onClick.AddListener(() => GameManager.instance.ChangeCapacityLevelUp());
+        _skinBuyButton.onClick.AddListener(() => GameManager.instance.ChangeSkinLevelUp());
+
+        _currentMoneyTxt.text = GameManager.instance.PlayerMoney.ToString();
+        _currentCapacityTxt.text = GameManager.instance.CurrentStackCapacity.ToString();
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void UpdateMoneyText()
     {
-        moneyTxt.text = GameManager.instance.playerMoney.ToString();
+        _currentMoneyTxt.text = GameManager.instance.PlayerMoney.ToString();
+    }
+
+    public void UpdateStackCapacityText( int capacity)
+    {
+        _currentCapacityTxt.text = capacity.ToString();
     }
 
     public void DisableCapacityBuyButton()
     {
-        capacityBuyButton.interactable = false;
+        _capacityBuyButton.interactable = false;
     }
 
     public void DisableSkinBuyButton()
     {
-        skinBuyButton.interactable = false;
+        _skinBuyButton.interactable = false;
     }
 }
 
