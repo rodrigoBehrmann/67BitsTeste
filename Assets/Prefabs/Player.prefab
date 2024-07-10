@@ -1186,7 +1186,7 @@ MonoBehaviour:
   positionInertiaFactor: 60
   baseRotationInertiaFactor: 22
   rotationInertiaDecreaseFactor: 3.2
-  _stackCapacity: 6
+  _stackCapacity: 2
 --- !u!114 &3706709921742993813
 MonoBehaviour:
   m_ObjectHideFlags: 0

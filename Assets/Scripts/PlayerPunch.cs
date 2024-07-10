@@ -19,7 +19,7 @@ public class PlayerPunch : MonoBehaviour
         _inputManager.inputControl.Player.Attack.performed += ctx => Punch();
     }
 
-    void Punch()
+    public void Punch()
     {
         Debug.Log("_playerStack.GetStackedCharactersCount()   " + _playerStack.GetStackedCharactersCount());
         Debug.Log("_playerStack.StackCapacity   "+ _playerStack.StackCapacity);
