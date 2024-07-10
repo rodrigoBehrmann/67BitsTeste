@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private InputManager _inputManager;
+    private InputManager _inputManager;
 
     private Rigidbody _rb;
 
@@ -12,35 +12,29 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float _movementForce = 1f;
     [SerializeField]
-    private float _jumpForce = 5f;
-    [SerializeField]
     private float _maxSpeed = 5f;
     private Vector3 _forceDirection = Vector3.zero;
-    private float _gravity = 1f;
 
     [Header("Camera")]
     [SerializeField]
     private Camera _playerCamera;
     private Animator _animator;
 
-    // [Header("Animation")]
-    //private PlayerAnimation _playerAnimation;
+    [Header("Animation")]
+    private PlayerAnimation _playerAnimation;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
-        //_animator = GetComponent<Animator>();
-        //_playerAnimation = GetComponent<PlayerAnimation>();
+        _animator = GetComponent<Animator>();
+        _playerAnimation = GetComponent<PlayerAnimation>();
+        _playerCamera = Camera.main;
     }
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         _inputManager = InputManager.Instance;
-
-        _inputManager.inputControl.Player.Jump.started += ctx => DoJump();
-        _inputManager.inputControl.Player.Jump.performed += ctx => DoJump();
-        _inputManager.inputControl.Player.Jump.canceled += ctx => DoJump();
     }
 
     private void Update()
@@ -100,30 +94,4 @@ public class PlayerController : MonoBehaviour
         LookAt();
     }
 
-    private void DoJump()
-    {
-        if (IsGrounded())
-        {
-            //_animator.SetTrigger("isJump");
-            AddJumpForce();
-        }
-    }
-
-    private bool IsGrounded()
-    {
-        Ray ray = new Ray(transform.position + Vector3.up * 0.25f, Vector3.down);
-        if (Physics.Raycast(ray, out RaycastHit hit, 0.3f))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    public void AddJumpForce()
-    {
-        _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
-    }
 }
