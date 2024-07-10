@@ -14,9 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float _maxSpeed = 5f;
     private Vector3 _forceDirection = Vector3.zero;
-
-    [Header("Camera")]
-    [SerializeField]
+       
     private Camera _playerCamera;
     private Animator _animator;
 
