@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerPunch : MonoBehaviour
@@ -38,8 +37,8 @@ public class PlayerPunch : MonoBehaviour
 
    private IEnumerator PunchHandle(Collider character, Rigidbody rb){
         Vector3 direction = (character.transform.position - punchPoint.position).normalized;
-        //rb.AddForce(character.gameObject.transform.forward * punchForce, ForceMode.Impulse); 
         RagdollActive ragdoll = character.gameObject.GetComponent<RagdollActive>();
+
         ragdoll.RagDollOn();
         ragdoll.AddForceToRagdoll(direction, punchForce);
 
