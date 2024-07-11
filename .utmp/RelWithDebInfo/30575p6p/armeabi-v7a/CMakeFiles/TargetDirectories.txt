@@ -1,0 +1,5 @@
+F:/REPOSITORIES GITHUB/67BitsTeste/.utmp/RelWithDebInfo/30575p6p/armeabi-v7a/CMakeFiles/edit_cache.dir
+F:/REPOSITORIES GITHUB/67BitsTeste/.utmp/RelWithDebInfo/30575p6p/armeabi-v7a/CMakeFiles/rebuild_cache.dir
+F:/REPOSITORIES GITHUB/67BitsTeste/.utmp/RelWithDebInfo/30575p6p/armeabi-v7a/FramePacing/CMakeFiles/swappywrapper.dir
+F:/REPOSITORIES GITHUB/67BitsTeste/.utmp/RelWithDebInfo/30575p6p/armeabi-v7a/FramePacing/CMakeFiles/edit_cache.dir
+F:/REPOSITORIES GITHUB/67BitsTeste/.utmp/RelWithDebInfo/30575p6p/armeabi-v7a/FramePacing/CMakeFiles/rebuild_cache.dir
