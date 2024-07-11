@@ -1081,7 +1081,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a420c388e41714e9ce289711da31f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementForce: 1.5
+  _movementForce: 1.4
   _maxSpeed: 5
 --- !u!114 &9202159047431165112
 MonoBehaviour:
@@ -1110,8 +1110,8 @@ MonoBehaviour:
   stackPosition: {fileID: 8345393040504654875}
   stackSpacing: 0.8
   positionInertiaFactor: 60
-  baseRotationInertiaFactor: 22
-  rotationInertiaDecreaseFactor: 5.5
+  baseRotationInertiaFactor: 24
+  rotationInertiaDecreaseFactor: 2.8
   _stackCapacity: 3
 --- !u!114 &3706709921742993813
 MonoBehaviour:

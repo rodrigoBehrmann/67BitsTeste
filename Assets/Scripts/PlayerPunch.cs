@@ -23,16 +23,15 @@ public class PlayerPunch : MonoBehaviour
         if(_playerStack.GetStackedCharactersCount() == _playerStack.StackCapacity)
         {
             return;
-        }
-
+        }        
         Collider[] hitCharacters = Physics.OverlapSphere(punchPoint.position, punchRadius, characterLayer);
-
-        foreach (Collider character in hitCharacters)
+        
+        if(hitCharacters.Length == 0)
         {
-            Rigidbody rb = character.GetComponent<Rigidbody>();  
-                     
-            StartCoroutine(PunchHandle(character, rb));            
-        }
+            return;
+        }        
+        Rigidbody rb = hitCharacters[0].GetComponent<Rigidbody>();
+        StartCoroutine(PunchHandle(hitCharacters[0], rb));                 
     }
 
    private IEnumerator PunchHandle(Collider character, Rigidbody rb){
@@ -42,7 +41,7 @@ public class PlayerPunch : MonoBehaviour
         ragdoll.RagDollOn();
         ragdoll.AddForceToRagdoll(direction, punchForce);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.4f);
         
         if (rb != null)
             {
