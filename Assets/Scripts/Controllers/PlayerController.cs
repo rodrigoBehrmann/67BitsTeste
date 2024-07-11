@@ -1,6 +1,4 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,16 +14,10 @@ public class PlayerController : MonoBehaviour
     private Vector3 _forceDirection = Vector3.zero;
        
     private Camera _playerCamera;
-    private Animator _animator;
-
-    [Header("Animation")]
-    private PlayerAnimation _playerAnimation;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
-        _animator = GetComponent<Animator>();
-        _playerAnimation = GetComponent<PlayerAnimation>();
         _playerCamera = Camera.main;
     }
 

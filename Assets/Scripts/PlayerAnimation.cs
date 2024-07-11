@@ -6,7 +6,6 @@ public class PlayerAnimation : MonoBehaviour
     private bool _isAttacking = false;
     private Animator _animator;
     private Rigidbody _rb;
-    private CapsuleCollider _collider;
 
     private InputManager _inputManager;
 
@@ -15,7 +14,6 @@ public class PlayerAnimation : MonoBehaviour
         _inputManager = InputManager.Instance;
         _animator = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody>();
-        _collider = GetComponent<CapsuleCollider>();
 
         _inputManager.inputControl.Player.Attack.performed += ctx => SimpleAttack();
     }

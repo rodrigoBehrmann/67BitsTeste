@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,15 +32,19 @@ public class UIManager : MonoBehaviour
 
     private void Start() {
         _capacityBuyButton.onClick.AddListener(() => GameManager.instance.ChangeCapacityLevelUp());
+
         _skinBuyButton.onClick.AddListener(() => GameManager.instance.ChangeSkinLevelUp());
 
         _shopPanelButton.onClick.AddListener(() => EnableShopPanel(true));
+
         _closeShopPanelButton.onClick.AddListener(() => EnableShopPanel(false));
 
         _currentMoneyTxt.text = GameManager.instance.PlayerMoney.ToString();
+
         _currentCapacityTxt.text = GameManager.instance.CurrentStackCapacity.ToString();
 
         Cursor.lockState = CursorLockMode.None;
+
         Cursor.visible = true;
     }
 
@@ -56,7 +58,7 @@ public class UIManager : MonoBehaviour
         _currentMoneyTxt.text = GameManager.instance.PlayerMoney.ToString();
     }
 
-    public void UpdateStackCapacityText( int capacity)
+    public void UpdateStackCapacityText(int capacity)
     {
         _currentCapacityTxt.text = capacity.ToString();
     }

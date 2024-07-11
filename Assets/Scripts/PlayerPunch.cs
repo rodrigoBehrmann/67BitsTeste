@@ -3,11 +3,16 @@ using UnityEngine;
 
 public class PlayerPunch : MonoBehaviour
 {
-    [SerializeField] private float punchForce = 10f;
-    [SerializeField] private float punchRadius = 1f;    
-    [SerializeField] private Transform punchPoint;
-    [SerializeField] private LayerMask characterLayer;
+    [SerializeField] private float _punchForce = 70f;
+
+    [SerializeField] private float _punchRadius = 1.3f; 
+
+    [SerializeField] private Transform _punchPoint;
+
+    [SerializeField] private LayerMask _characterLayer;
+
     private InputManager _inputManager;
+
     private PlayerStack _playerStack;
 
     private void Start() {
@@ -20,26 +25,25 @@ public class PlayerPunch : MonoBehaviour
 
     public void Punch()
     {
-        if(_playerStack.GetStackedCharactersCount() == _playerStack.StackCapacity)
-        {
-            return;
-        }        
-        Collider[] hitCharacters = Physics.OverlapSphere(punchPoint.position, punchRadius, characterLayer);
+        if(_playerStack.GetStackedCharactersCount() == _playerStack.StackCapacity) return;
+           
+        Collider[] hitCharacters = Physics.OverlapSphere(_punchPoint.position, _punchRadius, _characterLayer);
         
-        if(hitCharacters.Length == 0)
-        {
-            return;
-        }        
+        if(hitCharacters.Length == 0) return;
+              
         Rigidbody rb = hitCharacters[0].GetComponent<Rigidbody>();
+
         StartCoroutine(PunchHandle(hitCharacters[0], rb));                 
     }
 
    private IEnumerator PunchHandle(Collider character, Rigidbody rb){
-        Vector3 direction = (character.transform.position - punchPoint.position).normalized;
+        Vector3 direction = (character.transform.position - _punchPoint.position).normalized;
+
         RagdollActive ragdoll = character.gameObject.GetComponent<RagdollActive>();
 
         ragdoll.RagDollOn();
-        ragdoll.AddForceToRagdoll(direction, punchForce);
+
+        ragdoll.AddForceToRagdoll(direction, _punchForce);
 
         yield return new WaitForSeconds(0.4f);
         
@@ -54,10 +58,10 @@ public class PlayerPunch : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        if (punchPoint == null)
+        if (_punchPoint == null)
             return;
 
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(punchPoint.position, punchRadius);
+        Gizmos.DrawWireSphere(_punchPoint.position, _punchRadius);
     }
 }

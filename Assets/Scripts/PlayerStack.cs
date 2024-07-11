@@ -4,38 +4,39 @@ using UnityEngine;
 
 public class PlayerStack : MonoBehaviour
 {
-    public Transform stackPosition; 
+    [SerializeField] private Transform _stackPosition; 
 
     [Header("Position Settings")]
-    public float stackSpacing = 0.5f; 
-    public float positionInertiaFactor = 60f; 
+    [SerializeField] private float _stackSpacing = 0.8f; 
+    [SerializeField] private float _positionInertiaFactor = 60f; 
 
     [Header("Rotation Settings")]
-    public float baseRotationInertiaFactor = 22f; 
-    public float rotationInertiaDecreaseFactor = 3.2f; 
+    [SerializeField] private float _baseRotationInertiaFactor = 24f; 
+    [SerializeField] private float _rotationInertiaDecreaseFactor = 2.8f; 
     
     [HideInInspector]
     public int StackCapacity { get { return _stackCapacity; } }
-    [SerializeField]private int _stackCapacity = 2;
+    [SerializeField] private int _stackCapacity = 3;
 
-    private List<GameObject> stackedCharacters = new List<GameObject>();
+    private List<GameObject> _stackedCharacters = new List<GameObject>();
 
-    private void Start() {
+    private void Start() 
+    {
         UIManager.instance.UpdateStackCapacityText(_stackCapacity);
     }
 
     private void Update()
     {
-        if(stackedCharacters.Count > 0){
+        if(_stackedCharacters.Count > 0){
             MoveStackedCharacters();
         }
     }
 
     public void AddCharacterToStack(GameObject character)
     {
-        if (stackedCharacters.Count < _stackCapacity){
+        if (_stackedCharacters.Count < _stackCapacity){
             character.GetComponent<Collider>().enabled = false; 
-            stackedCharacters.Add(character);
+            _stackedCharacters.Add(character);
         }
         else{
             return;
@@ -45,16 +46,16 @@ public class PlayerStack : MonoBehaviour
     public void RemoveCharacterFromStack(int count){
         for (int i = 0; i < count; i++)
         {
-            if(stackedCharacters.Count > 0){
-                GameObject character = stackedCharacters[stackedCharacters.Count - 1];
-                stackedCharacters.Remove(character);
+            if(_stackedCharacters.Count > 0){
+                GameObject character = _stackedCharacters[_stackedCharacters.Count - 1];
+                _stackedCharacters.Remove(character);
                 Destroy(character);
             }
         }
     }
 
     public int GetStackedCharactersCount(){
-        return stackedCharacters.Count;  
+        return _stackedCharacters.Count;  
     }
 
     public void SetStackCapacity(int capacity){
@@ -63,20 +64,20 @@ public class PlayerStack : MonoBehaviour
 
      private void MoveStackedCharacters()
     {
-        //Vector3 previousPosition = stackPosition.position;
+        //Vector3 previousPosition = _stackPosition.position;
 
-        for (int i = 0; i < stackedCharacters.Count; i++)
+        for (int i = 0; i < _stackedCharacters.Count; i++)
         {
-            GameObject character = stackedCharacters[i];
+            GameObject character = _stackedCharacters[i];
         
-            Vector3 targetPosition = stackPosition.position + Vector3.up * (i * stackSpacing);
-            Vector3 newPosition = Vector3.Lerp(character.transform.position, targetPosition, Time.deltaTime * positionInertiaFactor);
+            Vector3 targetPosition = _stackPosition.position + Vector3.up * (i * _stackSpacing);
+            Vector3 newPosition = Vector3.Lerp(character.transform.position, targetPosition, Time.deltaTime * _positionInertiaFactor);
 
             character.transform.position = newPosition;
     
-            float rotationInertiaFactor = Mathf.Max(0, baseRotationInertiaFactor - i * rotationInertiaDecreaseFactor);
+            float rotationInertiaFactor = Mathf.Max(0, _baseRotationInertiaFactor - i * _rotationInertiaDecreaseFactor);
      
-            character.transform.rotation = Quaternion.Lerp(character.transform.rotation, stackPosition.rotation, Time.deltaTime * rotationInertiaFactor);
+            character.transform.rotation = Quaternion.Lerp(character.transform.rotation, _stackPosition.rotation, Time.deltaTime * rotationInertiaFactor);
 
            // previousPosition = newPosition;
         }
