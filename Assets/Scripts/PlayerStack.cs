@@ -63,9 +63,7 @@ public class PlayerStack : MonoBehaviour
     }
 
      private void MoveStackedCharacters()
-    {
-        //Vector3 previousPosition = _stackPosition.position;
-
+    {       
         for (int i = 0; i < _stackedCharacters.Count; i++)
         {
             GameObject character = _stackedCharacters[i];
@@ -78,8 +76,6 @@ public class PlayerStack : MonoBehaviour
             float rotationInertiaFactor = Mathf.Max(0, _baseRotationInertiaFactor - i * _rotationInertiaDecreaseFactor);
      
             character.transform.rotation = Quaternion.Lerp(character.transform.rotation, _stackPosition.rotation, Time.deltaTime * rotationInertiaFactor);
-
-           // previousPosition = newPosition;
         }
     }    
 }
