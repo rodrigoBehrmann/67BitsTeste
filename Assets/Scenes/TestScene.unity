@@ -5499,17 +5499,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1776658612}
     - target: {fileID: 1242346872694088373, guid: 5aa6bcefe117ae84c988cb588c2064b8, type: 3}
-      propertyPath: _materialColorSkin
-      value: 
-      objectReference: {fileID: 2100000, guid: e408df252cc0c064095e5f84a78d2e5a, type: 2}
-    - target: {fileID: 1242346872694088373, guid: 5aa6bcefe117ae84c988cb588c2064b8, type: 3}
       propertyPath: _enemyStartPosition
       value: 
       objectReference: {fileID: 569756688}
-    - target: {fileID: 1242346872694088373, guid: 5aa6bcefe117ae84c988cb588c2064b8, type: 3}
-      propertyPath: _stackLevelUpCapacity
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4137005835622687334, guid: 5aa6bcefe117ae84c988cb588c2064b8, type: 3}
       propertyPath: m_Name
       value: GameManager

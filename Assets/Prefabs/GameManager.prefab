@@ -44,11 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcc4ac86382a1b84585af7a9943af755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _enemyStartPosition: {fileID: 0}
   _enemy: {fileID: 0}
-  playerMoney: 0
-  _stackCapacity: 0
+  _playerMoney: 0
+  CurrentStackCapacity: 0
+  _stackLevelUpCapacity: 5
   _enemyValue: 10
   _playerRenderer: {fileID: 0}
-  _materialColorSkin: {fileID: 2100000, guid: 1dd42d382915a564f9ce921df36fe1ce, type: 2}
+  _materialColorSkin: {fileID: 2100000, guid: e408df252cc0c064095e5f84a78d2e5a, type: 2}
