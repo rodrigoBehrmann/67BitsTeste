@@ -13,6 +13,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _currentCapacityTxt;
 
     [Header("Shop UI Elements")]
+    [SerializeField] private GameObject _shopPanel;
+    [SerializeField] private Button _shopPanelButton;
+    [SerializeField] private Button _closeShopPanelButton;
     [SerializeField] private Button _capacityBuyButton;
     [SerializeField] private Button _skinBuyButton;
 
@@ -33,11 +36,19 @@ public class UIManager : MonoBehaviour
         _capacityBuyButton.onClick.AddListener(() => GameManager.instance.ChangeCapacityLevelUp());
         _skinBuyButton.onClick.AddListener(() => GameManager.instance.ChangeSkinLevelUp());
 
+        _shopPanelButton.onClick.AddListener(() => EnableShopPanel(true));
+        _closeShopPanelButton.onClick.AddListener(() => EnableShopPanel(false));
+
         _currentMoneyTxt.text = GameManager.instance.PlayerMoney.ToString();
         _currentCapacityTxt.text = GameManager.instance.CurrentStackCapacity.ToString();
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+    }
+
+    public void EnableShopPanel(bool open)
+    {
+        _shopPanel.SetActive(open);        
     }
 
     public void UpdateMoneyText()
