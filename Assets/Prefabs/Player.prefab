@@ -169,7 +169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 293432018380037217}
   m_Layer: 0
-  m_Name: PunchCollider
+  m_Name: PunchPoint
   m_TagString: Punch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -232,7 +232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8345393040504654875}
   m_Layer: 0
-  m_Name: EnemyInitialPos
+  m_Name: StackInitialPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1081,7 +1081,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74a420c388e41714e9ce289711da31f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementForce: 1.1
+  _movementForce: 2
   _maxSpeed: 5
 --- !u!114 &9202159047431165112
 MonoBehaviour:
@@ -1107,7 +1107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7ee4938220fef649b3d1e3f327aca28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stackPosition: {fileID: 0}
+  _stackPosition: {fileID: 8345393040504654875}
   _stackSpacing: 0.8
   _positionInertiaFactor: 60
   _baseRotationInertiaFactor: 24
@@ -1127,10 +1127,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _punchForce: 70
   _punchRadius: 1.3
-  _punchPoint: {fileID: 0}
+  _punchPoint: {fileID: 293432018380037217}
   _characterLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
 --- !u!1 &8540467788123034591
 GameObject:
   m_ObjectHideFlags: 0
